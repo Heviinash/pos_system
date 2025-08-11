@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner Streaming</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #scanner {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #barcodeOutput {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Barcode Scanner Streaming</h1>
+    <div id="scanner"></div>
+    <div id="barcodeOutput">Scanned Barcode: <span id="barcode"></span></div>
+
+    <script>
+        // Initialize Quagga for barcode scanning
+        function startQuagga() {
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scanner'), // Target the scanner element
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "code_39_reader"], // Add more barcode types if needed
+                },
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                Quagga.start();
+            });
+
+            Quagga.onDetected(function(data) {
+                const barcode = data.codeResult.code;
+                document.getElementById('barcode').innerText = barcode; // Display the scanned barcode
+            });
+        }
+
+        // Start the barcode scanner on page load
+        window.onload = startQuagga;
+    </script>
+</body>
+</html>

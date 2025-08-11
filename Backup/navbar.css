@@ -1,0 +1,159 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    background-color: #f4f4f4; /* Light background to contrast with navbar */
+    line-height: 1.6;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1a; /* Darker background for contrast */
+    padding: 10px 20px; /* Adjusted padding for better fit */
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle depth */
+    min-height: 60px; /* Slightly smaller height */
+    height: 60px;
+    width: 100%; /* Ensure the navbar is full-width */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    margin: 0; /* Remove default margin */
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 15px; /* Reduced margin for better fit */
+    position: relative; /* For submenu positioning */
+}
+
+/* Navigation Link Styling */
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px; /* Reduced padding for smaller links */
+    font-size: 14px; /* Smaller font size for better fit */
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Ensures padding affects the clickable area */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.nav-links a:hover {
+    background-color: #444; /* Slightly darker background */
+    color: #f1f1f1; /* Light text color */
+}
+
+/* Submenu Styles */
+.submenu {
+    display: none;
+    position: absolute; /* Position relative to the parent list item */
+    top: 100%; /* Ensures it appears directly below the parent item */
+    left: 0; /* Align it to the left of the parent item */
+    background-color: #333; /* Slightly darker for contrast */
+    min-width: 180px; /* Wider submenu for better fit */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More subtle and softer shadow */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(10px); /* Slide down effect */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show submenu on hover */
+.nav-links li:hover .submenu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Smooth slide-up effect */
+}
+
+/* Submenu link styling */
+.submenu a {
+    padding: 10px 20px; /* Adjusted padding for consistent spacing */
+    color: #ddd; /* Lighter color for submenu items */
+    white-space: nowrap; /* Prevent text from wrapping */
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu a:hover {
+    background-color: #444; /* Darker background on hover */
+    color: #ffffff; /* White text for contrast */
+}
+
+/* Media Query for responsiveness (for smaller screens) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 15px; /* Adjusted padding for smaller screens */
+        height: 55px; /* Slightly smaller navbar height */
+        min-height: 55px;
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack the links vertically */
+        width: 100%; /* Ensure the navbar takes up the full width */
+        position: absolute;
+        top: 60px; /* Position below the navbar */
+        left: 0;
+        background-color: #1a1a1a;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+        display: none; /* Hidden by default */
+    }
+
+    .nav-links.active {
+        display: block; /* Show links when activated */
+    }
+
+    .nav-links li {
+        margin-left: 0; /* Remove left margin when stacked */
+        width: 100%; /* Ensure items take full width */
+    }
+
+    .nav-links a {
+        padding: 10px 15px; /* Slightly larger padding for mobile-friendly touch targets */
+        font-size: 16px; /* Larger font size for readability */
+    }
+
+    .submenu {
+        left: 50%; /* Center the submenu */
+        transform: translateX(-50%); /* Offset the submenu to be centered */
+    }
+
+    .home-icon {
+        text-decoration: none;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        color: black; /* Adjust the color as needed */
+        font-size: 20px; /* Size for the caret */
+    }
+
+    .roof {
+        font-size: 22px; /* Size of the ^ shape */
+        margin-bottom: -5px; /* Adjust spacing between ^ and the box */
+    }
+
+    .box {
+        width: 18px; /* Width of the box */
+        height: 9px; /* Height of the box */
+        background-color: black; /* Color of the box */
+        display: block;
+    }
+}
